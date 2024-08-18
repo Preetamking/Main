@@ -1,1 +1,120 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            color: white;
+        }
+        .input-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: 2px solid white;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ff7e5f;
+            color: white;
+            cursor: pointer;
+        }
+        h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 24px;
+        }
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            height: 100px;
+            width: 80px;
+            animation: floatBalloon 6s ease-in-out infinite;
+        }
+        .star {
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            animation: twinkleStar 2s infinite ease-in-out;
+        }
+        @keyframes floatBalloon {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(50px) translateY(-200px); }
+            100% { transform: translateX(-50px) translateY(0); }
+        }
+        @keyframes twinkleStar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="birthdayContainer">
+    <div class="input-box" id="inputBox">
+        <h1>Enter your name</h1>
+        <input type="text" id="nameInput" placeholder="Your Name">
+        <button onclick="showBirthdayWish()">Celebrate!</button>
+    </div>
+</div>
+
+<script>
+    function showBirthdayWish() {
+        const name = document.getElementById('nameInput').value;
+        const container = document.getElementById('birthdayContainer');
+        
+        container.innerHTML = `
+            <h1>Happy Birthday ${name}!</h1>
+            <p>May all your wishes come true!</p>
+        `;
+        
+        // Add balloons
+        for (let i = 0; i < 10; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            container.appendChild(balloon);
+        }
+        
+        // Add stars
+        for (let i = 0; i < 20; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+            container.appendChild(star);
+        }
+    }
+</script>
+
+</body>
+</html>
